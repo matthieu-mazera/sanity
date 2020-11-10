@@ -1,7 +1,5 @@
-/* global window */
-
 import {Observable} from 'rxjs'
-import UUID from '@sanity/uuid'
+import {uuid} from '@sanity/uuid'
 import deepEqual from 'deep-equal'
 
 const RESEND_REPORT_INTERVAL = 15000
@@ -12,7 +10,7 @@ function hashKeyForState(identity, session) {
 }
 
 class PresenceStore {
-  constructor(connection, channel) {
+  constructor(connection) {
     this.connection = connection
     this.messageSubscription = this.connection.listen().subscribe(this.handleMessage)
     this.myState = {}
@@ -21,7 +19,7 @@ class PresenceStore {
     this.resendReportTimer = null
     this.changeReportDebounceTimer = null
     this.performPurgeTimer = setInterval(this.performPurge, 2000)
-    this.sessionId = UUID()
+    this.sessionId = uuid()
     this.requestRollCall()
 
     // List of functions that will be called with presence change notifications
@@ -153,5 +151,4 @@ class PresenceStore {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 module.exports = PresenceStore

@@ -15,7 +15,7 @@
     "tape": "^4.8.0"
   },
   "dependencies": {
-    "@sanity/uuid": "2.0.1",
+    "@sanity/uuid": "^3.0.1",
     "deep-equal": "^1.0.1",
     "rxjs": "^6.5.3"
   },
